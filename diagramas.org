@@ -1,13 +1,16 @@
 #+BEGIN_SRC plantuml :file assets/class-diagram.png
   @startuml
+  'Anotaciones
+  note left of Usuario : Será necesario una clase Admin?
+
   'Relaciones
-  Prenda -right-> Tipo
+  Prenda --> Tipo
   Prenda -right-> Material
 
-  Prenda <|.down. ParteInferior
-  Prenda <|.down. ParteSuperior
-  Prenda <|.down. Calzado
-  Prenda <|.down. Accesorio
+  Prenda <|-down- ParteInferior
+  Prenda <|-down- ParteSuperior
+  Prenda <|-down- Calzado
+  Prenda <|-down- Accesorio
 
   Uniforme -up-|> Atuendo
   Atuendo -right-> Prenda
@@ -19,8 +22,6 @@
 
   Usuario .right.> Atuendo
   Usuario .up.> Uniforme
-
-  Admin -down-|> Usuario
 
   'Estructuras
   abstract class Prenda{
@@ -42,8 +43,9 @@
           construirAtuendo()
   }
 
-  class Usuario
-  class Admin
+  class Usuario{
+          +esAdministador()
+  }
 
   class ParteSuperior
   class ParteInferior
@@ -52,3 +54,6 @@
 
   @enduml
 #+END_SRC
+
+#+RESULTS:
+[[file:assets/class-diagram.png]]
