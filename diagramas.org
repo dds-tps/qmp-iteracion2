@@ -1,0 +1,54 @@
+#+BEGIN_SRC plantuml :file assets/class-diagram.png
+  @startuml
+  'Relaciones
+  Prenda -right-> Tipo
+  Prenda -right-> Material
+
+  Prenda <|.down. ParteInferior
+  Prenda <|.down. ParteSuperior
+  Prenda <|.down. Calzado
+  Prenda <|.down. Accesorio
+
+  Uniforme -up-|> Atuendo
+  Atuendo -right-> Prenda
+
+  Material .down.> Trama
+  Material .down.> Color
+  Material .down.> Tela
+  Material .right.> Tipo
+
+  Usuario .right.> Atuendo
+  Usuario .up.> Uniforme
+
+  Admin -down-|> Usuario
+
+  'Estructuras
+  abstract class Prenda{
+          -elegirMaterial(Material m, Tipo t)
+          +Prenda construirPrenda()
+          +esBorrador()
+  }
+  enum Tipo
+  class Material{
+          elegirMaterial(Material m, Tipo t)
+  }
+  enum Tela
+  enum Color
+  enum Trama
+
+  class Uniforme{
+  }
+  class Atuendo{
+          construirAtuendo()
+  }
+
+  class Usuario
+  class Admin
+
+  class ParteSuperior
+  class ParteInferior
+  class Calzado
+  class Accesorio
+
+  @enduml
+#+END_SRC
